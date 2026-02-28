@@ -1,0 +1,41 @@
+package aulasenora.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class LoginViewController {
+
+    @GetMapping("/login")
+    public String mostrarLogin(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "logout", required = false) String logout,
+            @RequestParam(value = "registerSuccess", required = false) String registerSuccess,
+            Model model) {
+
+        if (error != null) {
+            model.addAttribute("error", "Usuario o contraseña inválidos");
+        }
+        if (logout != null) {
+            model.addAttribute("mensaje", "Has cerrado sesión correctamente");
+        }
+        if (registerSuccess != null) {
+            model.addAttribute("mensaje", "Registro exitoso, por favor inicia sesión");
+        }
+        return "login";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
+    @GetMapping("/")
+    public String rootRedirect() {
+        // let Spring Security handle unauthenticated users; authenticated users
+        // will end up at dashboard anyway
+        return "redirect:/dashboard";
+    }
+}
