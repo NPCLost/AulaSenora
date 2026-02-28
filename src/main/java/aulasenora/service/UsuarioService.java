@@ -25,6 +25,9 @@ public class UsuarioService {
             throw new RuntimeException("El email ya está en uso");
         }
 
+        // asignar rol por defecto de estudiante siempre que se registre desde el formulario
+        usuario.setRol("ESTUDIANTE");
+
         // Encriptar la contraseña antes de guardar
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);

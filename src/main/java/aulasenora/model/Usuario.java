@@ -24,7 +24,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private String rol = "USER";
+    private String rol = "USER"; // will be overridden during registration
 
     // Getters y Setters
     public Long getId() { return id; }
