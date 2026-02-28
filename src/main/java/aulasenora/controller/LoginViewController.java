@@ -28,8 +28,27 @@ public class LoginViewController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
+    public String dashboard(Model model) {
+        // obtener rol principal sin prefijo ROLE_
+        org.springframework.security.core.Authentication auth =
+                org.springframework.security.core.context.SecurityContextHolder
+                        .getContext().getAuthentication();
+        String rol = auth.getAuthorities().stream()
+                .map(gr -> gr.getAuthority())
+                .filter(r -> r.startsWith("ROLE_"))
+                .map(r -> r.substring(5))
+                .findFirst()
+                .orElse("ESTUDIANTE");
+        model.addAttribute("rol", rol);
+
+        switch (rol) {
+            case "ADMIN":
+                return "dashboard-admin";
+            case "VOLUNTARIO":
+                return "dashboard-voluntario";
+            default:
+                return "dashboard-estudiante";
+        }
     }
 
     @GetMapping("/")

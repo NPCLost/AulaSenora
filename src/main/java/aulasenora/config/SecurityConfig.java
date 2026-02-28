@@ -25,6 +25,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // allow registration, login and static resources
                 .requestMatchers("/usuarios/registrar", "/login", "/css/**", "/js/**").permitAll()
+                // dashbaords específicos según rol
+                .requestMatchers("/dashboard-admin").hasRole("ADMIN")
+                .requestMatchers("/dashboard-voluntario").hasRole("VOLUNTARIO")
+                .requestMatchers("/dashboard-estudiante").hasRole("ESTUDIANTE")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
