@@ -24,7 +24,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 // allow registration, login and static resources
-                .requestMatchers("/usuarios/registrar", "/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/registrar", "/registrar/success", "/api/registro", "/login", "/css/**", "/js/**").permitAll()
                 // dashbaords específicos según rol
                 .requestMatchers("/dashboard-admin").hasRole("ADMIN")
                 .requestMatchers("/dashboard-voluntario").hasRole("VOLUNTARIO")

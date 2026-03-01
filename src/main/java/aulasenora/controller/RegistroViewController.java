@@ -11,7 +11,7 @@ import aulasenora.model.Usuario;
 import aulasenora.service.UsuarioService;
 
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping("/registrar")
 public class RegistroViewController {
 
     private final UsuarioService usuarioService;
@@ -20,13 +20,13 @@ public class RegistroViewController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/registrar")
+    @GetMapping
     public String mostrarFormulario(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registro";
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/success")
     public String registrar(@ModelAttribute Usuario usuario, Model model) {
         try {
             usuarioService.registrar(usuario);

@@ -12,7 +12,7 @@
         <div th:if="${exito}" class="mensaje-exito" th:text="${exito}"></div>
         <div th:if="${error}" class="mensaje-error" th:text="${error}"></div>
 
-        <form th:action="@{/usuarios/registrar}" th:object="${usuario}" method="post">
+        <form th:action="@{/registrar/success}" th:object="${usuario}" method="post">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" th:field="*{username}" placeholder="Ej: juan123" required/>

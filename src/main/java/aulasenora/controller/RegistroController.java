@@ -10,7 +10,7 @@ import aulasenora.model.Usuario;
 import aulasenora.service.UsuarioService;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/registro")
 public class RegistroController {
 
     private final UsuarioService usuarioService;
@@ -19,7 +19,7 @@ public class RegistroController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/registrar")
+    @PostMapping
     public ResponseEntity<?> registrar(@RequestBody Usuario usuario) {
         try {
             Usuario nuevo = usuarioService.registrar(usuario);

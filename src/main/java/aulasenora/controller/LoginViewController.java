@@ -41,14 +41,11 @@ public class LoginViewController {
                 .orElse("ESTUDIANTE");
         model.addAttribute("rol", rol);
 
-        switch (rol) {
-            case "ADMIN":
-                return "dashboard-admin";
-            case "VOLUNTARIO":
-                return "dashboard-voluntario";
-            default:
-                return "dashboard-estudiante";
-        }
+        return switch (rol) {
+            case "ADMIN" -> "dashboard-admin";
+            case "VOLUNTARIO" -> "dashboard-voluntario";
+            default -> "dashboard-estudiante";
+        };
     }
 
     @GetMapping("/")
